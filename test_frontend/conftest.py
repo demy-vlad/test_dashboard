@@ -7,7 +7,7 @@ from pom.authorization_page_nav import AuthorizationPageNav
 
 
 # Set this flag to True to use WebDriver.Remote
-USE_REMOTE_DRIVER = False
+USE_REMOTE_DRIVER = True
 
 @pytest.fixture(scope="function")
 def get_chrome_options():
@@ -27,7 +27,7 @@ def get_webdriver(get_chrome_options):
     if USE_REMOTE_DRIVER:
         # Using WebDriver.Remote
         driver = webdriver.Remote(
-            command_executor=os.getenv("WEBDRIVER_URL"),
+            executable_path='/usr/local/bin/chromedriver',
             options=options
         )
     else:

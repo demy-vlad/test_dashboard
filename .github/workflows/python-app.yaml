@@ -19,14 +19,22 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install pytest  # Установите pytest
-        # Проверка на существование /usr/bin/chromedriver и его удаление, если он существует
-        if [ -f /usr/bin/chromedriver ]; then
-          sudo rm /usr/bin/chromedriver
-        fi
-        # Установка Chrome
-        sudo apt-get install -y google-chrome-stable
-        google-chrome --version
-        chromedriver --version
+        # # Проверка на существование /usr/bin/chromedriver и его удаление, если он существует
+        # if [ -f /usr/bin/chromedriver ]; then
+        #   sudo rm /usr/bin/chromedriver
+        # fi
+        # # Установка Chrome
+        # sudo apt-get install -y google-chrome-stable
+        # google-chrome --version
+        # chromedriver --version
+
+    - name: Install ChromeDriver
+      run: |
+        CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
+        unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+        chmod +x /usr/local/bin/chromedriver
+
 
 
     - name: Run Web Tests

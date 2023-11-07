@@ -12,7 +12,7 @@ USE_REMOTE_DRIVER = True
 @pytest.fixture(scope="function")
 def get_chrome_options():
     """Get Chrome options."""
-    options = chrome_options()
+    options = webdriver.FirefoxOptions()
     options.headless = False  # Use headless if you do not need a browser UI
     options.add_argument("--start-maximized")
     options.add_argument("--window-size=1650,900")
@@ -24,14 +24,10 @@ def get_chrome_options():
 def get_webdriver(get_chrome_options):
     """Get WebDriver"""
     options = get_chrome_options
+    
     if USE_REMOTE_DRIVER:
         # Using WebDriver.Remote
-        os.environ['PATH'] += ':/usr/local/bin'
-        driver = webdriver.Chrome(
-            options=options,
-            # service_args='/usr/local/bin/chromedriver',
-            # executable_path='/usr/local/bin/chromedriver',
-        )
+        driver = webdriver.Firefox(options=options)
     else:
         # Using WebDriver.Chrome
         driver = webdriver.Chrome(options=options)

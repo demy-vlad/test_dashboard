@@ -27,7 +27,7 @@ def get_webdriver(get_chrome_options):
     if USE_REMOTE_DRIVER:
         # Using WebDriver.Remote
         driver = webdriver.Chrome(
-            executable_path='/usr/local/bin/chromedriver',
+            executable_path='--chromedriver=/usr/local/bin/chromedriver',
             options=options
         )
     else:

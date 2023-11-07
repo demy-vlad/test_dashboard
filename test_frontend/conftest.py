@@ -16,7 +16,7 @@ def get_chrome_options():
     options.headless = False  # Use headless if you do not need a browser UI
     options.add_argument("--start-maximized")
     options.add_argument("--window-size=1650,900")
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    # options.add_experimental_option('excludeSwitches', ['enable-logging'])
     return options
 
 

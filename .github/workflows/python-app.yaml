@@ -23,10 +23,6 @@ jobs:
         if [ -f /usr/bin/chromedriver ]; then
           sudo rm /usr/bin/chromedriver
         fi
-        # Установка Chrome и ChromeDriver
-        sudo apt-get update
-        sudo apt-get install -y chromium-chromedriver
-        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
         # Установка Chrome
         sudo apt-get install -y google-chrome-stable
         google-chrome --version

@@ -20,19 +20,27 @@ jobs:
         pip install -r requirements.txt
         pip install pytest  # Установите pytest
 
-    - name: Install ChromeDriver
+    # - name: Install ChromeDriver
+    #   run: |
+    #     # CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    #     # wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
+    #     # unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+    #     # chmod +x /usr/local/bin/chromedriver
+
+    #     CHROMEDRIVER_VERSION=114.0.5735.90  # Версия ChromeDriver, совместимая с Chrome 118
+    #     wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
+    #     unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+    #     chmod +x /usr/local/bin/chromedriver
+
+    - name: Install Firefox and GeckoDriver
       run: |
-        # CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        # wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
-        # unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
-        # chmod +x /usr/local/bin/chromedriver
-
-        CHROMEDRIVER_VERSION=114.0.5735.90  # Версия ChromeDriver, совместимая с Chrome 118
-        wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
-        unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
-        chmod +x /usr/local/bin/chromedriver
-
-
+        sudo apt-get update
+        sudo apt-get install -y firefox
+        GECKODRIVER_VERSION=$(curl -sS https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r .tag_name)
+        wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -P /tmp/
+        tar -xf /tmp/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/local/bin/
+        chmod +x /usr/local/bin/geckodriver
+        geckodriver --version
 
 
     - name: Run Web Tests

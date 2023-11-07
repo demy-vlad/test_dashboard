@@ -23,8 +23,6 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-        # Удалить существующий chromedriver (если есть)
-        sudo rm /usr/local/bin/chromedriver
         # Установить совместимую версию ChromeDriver
         CHROMEDRIVER_VERSION=118.0.5993.70  # Версия совместимого ChromeDriver
         wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/

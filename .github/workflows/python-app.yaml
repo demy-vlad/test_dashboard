@@ -27,7 +27,7 @@ jobs:
         # unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
         # chmod +x /usr/local/bin/chromedriver
 
-        CHROMEDRIVER_VERSION=118.0.5993.70  # Версия ChromeDriver, совместимая с Chrome 118
+        CHROMEDRIVER_VERSION=114.0.5735.90  # Версия ChromeDriver, совместимая с Chrome 118
         wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp/
         unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
         chmod +x /usr/local/bin/chromedriver

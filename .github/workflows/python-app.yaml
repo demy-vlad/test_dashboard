@@ -19,6 +19,7 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install pytest  # Установите pytest
+        pip install --upgrade selenium
         # # Проверка на существование /usr/bin/chromedriver и его удаление, если он существует
         # if [ -f /usr/bin/chromedriver ]; then
         #   sudo rm /usr/bin/chromedriver
